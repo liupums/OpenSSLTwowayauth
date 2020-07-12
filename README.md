@@ -8,8 +8,9 @@ Demo two way auth using SSL
 2. SSL uses PyOpenssl
 ## Testing certs
 1. Use OpenSSL
-2. FakeCA -- FakeServer
-          -- FakeClient
+2. FakeCA --> FakeServer
+
+   FakeCA --> FakeClient
 ## Steps
 1. Testing on windows 
 2. Run "create.cmd" to create testing certs

@@ -104,3 +104,29 @@ Demo two way auth using SSL
             notBefore: 2020-07-12 19:31:17
             notAfter:  2021-07-12 19:31:17
 ```
+4. Get remote server SSL certificate
+```
+    E:\pop\repo\OpenSSLTwowayauth>python ssl-check.py --host www.google.com
+    ====SSL session certs[0]===
+    X509 Cert Info
+            commonName: www.google.com
+            SAN: ['www.google.com']
+            issuer: GTS CA 1O1
+            notBefore: 2020-06-17 14:31:22
+            notAfter:  2020-09-09 14:31:22
+
+    ====SSL session certs[1]===
+    X509 Cert Info
+            commonName: GTS CA 1O1
+            SAN: None
+            issuer: GlobalSign
+            notBefore: 2017-06-15 00:00:42
+            notAfter:  2021-12-15 00:00:42
+
+    » www.google.com « … ('172.217.14.196', 443)
+            commonName: www.google.com
+            SAN: ['www.google.com']
+            issuer: GTS CA 1O1
+            notBefore: 2020-06-17 14:31:22
+            notAfter:  2020-09-09 14:31:22
+```

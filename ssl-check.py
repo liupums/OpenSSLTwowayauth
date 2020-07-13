@@ -7,6 +7,7 @@ from OpenSSL import crypto
 from cryptography import x509
 from cryptography.x509.oid import NameOID
 import idna
+from cryptography.x509 import BasicConstraints
 
 from socket import socket
 from collections import namedtuple
@@ -35,10 +36,10 @@ def get_certificate(hostname, port):
     certs = sock_ssl.get_peer_cert_chain()
     for pos, cert in enumerate(certs):
         print("====SSL session certs[" + str(pos) + "]===")
-        print_cert_info(cert.to_cryptography())
         fd = os.open("cert"+str(pos)+".pem", os.O_RDWR|os.O_CREAT)
         os.write(fd, crypto.dump_certificate(crypto.FILETYPE_PEM, cert))
         os.close(fd)
+        print_cert_info(cert.to_cryptography())
     sock_ssl.close()
     sock.close()
 
@@ -49,6 +50,9 @@ def get_alt_names(cert):
         ext = cert.extensions.get_extension_for_class(x509.SubjectAlternativeName)
         return ext.value.get_values_for_type(x509.DNSName)
     except x509.ExtensionNotFound:
+        return None
+    except ValueError as ve:
+        print(ve)
         return None
 
 def get_common_name(cert):
@@ -103,7 +107,6 @@ def check_it_out(hostname, port):
     hostinfo = get_certificate(hostname, port)
     print_basic_info(hostinfo)
 
-
 import concurrent.futures
 if __name__ == '__main__':
     import argparse
@@ -111,7 +114,7 @@ if __name__ == '__main__':
     parser.add_argument('--host', action='store', dest='host',
                         help='remote server hostname or Ip Address')
 
-    parser.add_argument('--port', action='store', dest='port', default=443,
+    parser.add_argument('--port', action='store', dest='port', type=int, default=443,
                         help='remote port number, default 443')
 
     parser.add_argument('--version', action='version', version='%(prog)s 1.0')

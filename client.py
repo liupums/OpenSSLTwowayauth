@@ -10,7 +10,7 @@ CERT_PRIVATE_KEY_PATH = "certs/client.key"
 
 def verify_callback(connection, x509, errnum, errdepth, ok):
     print("in callback, cert result %d" % (ok))
-    Utils.print_cert_info(x509)
+    Utils.print_cert_info(x509.to_cryptography())
     return True
 
 def get_certificate(hostname, port):
@@ -34,7 +34,7 @@ def get_certificate(hostname, port):
     certs = sock_ssl.get_peer_cert_chain()
     for pos, cert in enumerate(certs):
         print("====SSL session certs[" + str(pos) + "]===")
-        Utils.print_cert_info(cert)
+        Utils.print_cert_info(cert.to_cryptography())
 
     sock_ssl.close()
     sock.close()

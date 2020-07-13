@@ -19,5 +19,5 @@ openssl genrsa -out certs/server.key 1024
 openssl req -new -key certs/server.key -out certs/server.csr -subj "/C=US/ST=WA/L=Provo/O=FakeServer/CN=FakeServer.com"
 openssl x509 -req -days 365 -in certs/server.csr -CA certs/ca.cer -CAkey certs/ca.key -set_serial 01 -out certs/server.cer
 
-cat certs/server.cer certs/ca.cer > certs/chain.cer
+type "certs\server.cer" "certs\ca.cer" > certs\chain.cer
 REM use "certlm" to install ca.cer into trusted root

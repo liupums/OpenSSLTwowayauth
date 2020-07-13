@@ -1,6 +1,6 @@
 @echo off
-rm -rf certs
-mkdir certs
+RMDIR /Q/S certs
+md certs
 REM To skip the following Python commands, put "REM" before them:
 REM Create a Certificate Authority private key (this is your most important key):
 openssl req -new -newkey rsa:1024 -nodes -out certs/ca.csr -keyout certs/ca.key -subj "/C=US/ST=WA/L=Provo/O=FakeCA/CN=FakeCA.com"

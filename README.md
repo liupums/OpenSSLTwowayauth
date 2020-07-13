@@ -1,5 +1,10 @@
 # OpenSSLTwowayauth
 Demo two way auth using SSL
+## Python modules
+```
+pip install cherrypy
+pip install pyopenssl
+```
 ## Server
 1. Web Server uses cheroot in cherrypy https://github.com/cherrypy/cheroot
 2. SSL uses PyOpenssl

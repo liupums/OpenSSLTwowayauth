@@ -39,6 +39,7 @@ def my_crazy_app(environ, start_response):
 
 def verify_callback(connection, x509, errnum, errdepth, ok):
     print("in callback, cert result %d" % (ok))
+    print("in callback, x509 cert")
     Utils.print_cert_info(x509.to_cryptography())
     return True
 

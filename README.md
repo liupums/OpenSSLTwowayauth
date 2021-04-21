@@ -2,8 +2,9 @@
 Demo two way auth using SSL
 ## Python modules
 ```
-pip install cherrypy
-pip install pyopenssl
+python3 -m pip install cherrypy
+python3 -m pip install pyopenssl
+python3 -m pip install idna
 ```
 ## Server
 1. Web Server uses cheroot in cherrypy https://github.com/cherrypy/cheroot
@@ -58,7 +59,7 @@ pip install pyopenssl
 
 2. Server
 ```
-    E:\pop\repo\OpenSSLTwowayauth>python server.py
+    E:\pop\repo\OpenSSLTwowayauth>python3 server.py
     1
     X509 Cert Info
             commonName: FakeCA.com
@@ -77,7 +78,7 @@ pip install pyopenssl
 ```
 3. Client
 ```
-    E:\pop\repo\OpenSSLTwowayauth>python client.py
+    E:\pop\repo\OpenSSLTwowayauth>python3 client.py --host 127.0.0.1 --port 8070 --api /    
     in callback, cert result 1
     X509 Cert Info
             commonName: FakeCA.com
